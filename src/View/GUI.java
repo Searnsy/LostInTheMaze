@@ -8,7 +8,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class GUI {
-    public static void main(String[] args) {
+    private char current_hint = 'A';
+
+    public GUI() {
         Board board = new Board("src/Model/sample_playing_board.txt");
 
         JFrame frame = new JFrame("Lost In The Maze");
@@ -41,7 +43,7 @@ public class GUI {
             for(int j = 0; j < 10; j++) {
                 JButton button = new JButton();
                 button.setPreferredSize(new Dimension(50,50));
-                board_display.add(new GameTile(board.board[i][j]));
+                board_display.add(new GameTile(this, board.board[i][j]));
             }
         }
 
@@ -50,5 +52,13 @@ public class GUI {
 
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public char getCurrentHint() {
+        return current_hint;
+    }
+
+    public static void main(String[] args) {
+        GUI gui = new GUI();
     }
 }

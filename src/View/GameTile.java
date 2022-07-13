@@ -8,13 +8,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GameTile extends JButton implements ActionListener {
+    GUI gui;
     char tile_type;
     boolean isPlayer;
     Color playerColor;
     ArrayList<Character> tracking_hints;
 
-    public GameTile(char tile_type) {
+    public GameTile(GUI gui, char tile_type) {
         this.setPreferredSize(new Dimension(50, 50));
+        this.gui = gui;
         this.tile_type = tile_type;
         this.isPlayer = false;
         this.playerColor = Color.LIGHT_GRAY;
@@ -26,8 +28,8 @@ public class GameTile extends JButton implements ActionListener {
         addActionListener(this);
     }
 
-    public GameTile(char tile_type, Color playerColor) {
-        this(tile_type);
+    public GameTile(GUI gui, char tile_type, Color playerColor) {
+        this(gui, tile_type);
         this.isPlayer = true;
         this.playerColor = playerColor;
     }
@@ -78,7 +80,13 @@ public class GameTile extends JButton implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        this.tracking_hints.add('A');
+        char current_hint = gui.getCurrentHint();
+        if(tracking_hints.contains(current_hint)) {
+            tracking_hints.remove(new Character(current_hint));
+        }
+        else {
+            tracking_hints.add(current_hint);
+        }
         this.repaint();
     }
 }
