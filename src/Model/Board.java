@@ -1,12 +1,11 @@
 package Model;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Board {
-    char board[][];
+    public char board[][];
     public Board(String file) {
         this.board = new char[10][10];
         try {
