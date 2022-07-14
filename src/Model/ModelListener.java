@@ -5,6 +5,11 @@ import java.util.Map;
 public interface ModelListener {
 
     /**
+     * Requests the player name at startup.
+     */
+    public void requestName();
+
+    /**
      * Update the game status: waiting, start, victory
      *
      * @param status the status of the game

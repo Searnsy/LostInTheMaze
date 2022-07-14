@@ -1,4 +1,4 @@
-package Network.Server;
+package Model;
 
 public interface ViewListener {
 }

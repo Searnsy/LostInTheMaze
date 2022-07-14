@@ -1,6 +1,7 @@
 package Network.Server;
 
 import Model.ModelListener;
+import Model.ViewListener;
 
 import java.net.Socket;
 

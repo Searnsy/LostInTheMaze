@@ -1,6 +1,10 @@
 package Model;
 
-public class Player implements ModelListener {
+import Network.Server.ModelWriter;
+
+public class Player implements ModelListener, ViewListener {
+
+    private ModelWriter modelWriter;
 
     private String name;
     private int team;
@@ -8,6 +12,10 @@ public class Player implements ModelListener {
     private Position position;
     private int hp;
     private Item[] items;
+
+    public Player(ModelWriter modelWriter) {
+        this.modelWriter = modelWriter;
+    }
 
     public Player(String name, int team) {
         this.name = name;

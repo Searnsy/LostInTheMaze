@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class GameState {
+public class GameManager {
+    static int MAX_PLAYERS = 8;
+
     private Board board;
     private ArrayList<Player> red_team;
     private ArrayList<Player> blue_team;
     private ArrayList<Player> all_players;
     private boolean is_red_turn;
     private Random random;
+    private GameStatus game_status;
 
     private HashMap<String, Position> player_position_updates;
     private HashMap<String, ItemUse> player_action_updates;
 
-    public GameState() {
+    public GameManager() {
+        game_status = GameStatus.WAITING_FOR_PLAYERS;
         board = new Board("board.txt");
         red_team = new ArrayList<>();
         blue_team = new ArrayList<>();
@@ -23,7 +27,11 @@ public class GameState {
         is_red_turn = random.nextBoolean();
     }
 
-    public void addPlayer(Player p) {
+    public synchronized boolean addPlayer(Player p) {
+        if(game_status != GameStatus.WAITING_FOR_PLAYERS) {
+            return false;
+        }
+
         if(is_red_turn) {
             red_team.add(p);
         }
@@ -32,6 +40,7 @@ public class GameState {
         }
         all_players.add(p);
         is_red_turn = !is_red_turn;
+        return true;
     }
 
     public void playGame() {
