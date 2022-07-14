@@ -3,9 +3,7 @@ package View;
 import Model.Board;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.util.Random;
 
 public class GUI {
     private char current_hint = 'A';
@@ -19,7 +17,6 @@ public class GUI {
         JPanel panel = new JPanel();
         frame.add(panel);
 
-        Random random = new Random();
         JPanel board_display = new JPanel();
         board_display.setLayout(new GridLayout(11,11));
         JLabel top_left_label = new JLabel();

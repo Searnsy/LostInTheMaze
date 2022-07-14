@@ -1,5 +1,7 @@
 package Network.Server;
 
+import Model.ModelListener;
+
 public class SessionManager {
     private GameManager waitingGame;
 

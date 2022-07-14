@@ -1,8 +1,10 @@
 package Network.Server;
 
+import Model.ModelListener;
+
 import java.net.Socket;
 
-public class ModelWriter implements ModelListener{
+public class ModelWriter implements ModelListener {
     private Socket socket;
     private ViewListener viewListener;
 

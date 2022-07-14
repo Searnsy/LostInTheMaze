@@ -1,53 +1,50 @@
 package Model;
 
-public class Player {
+public class Player implements ModelListener {
+
+    private String name;
     private int team;
-    private int[] items;
-    private int x;
-    private int y;
+
+    private Position position;
     private int hp;
+    private Item[] items;
 
-    public Player(int team) {
+    public Player(String name, int team) {
+        this.name = name;
+        this.team = team;
+
         // team 0 starts at (0,0), team 1 starts at (9,9)
-        int x = 9 * team;
-        int y = 9 * team;
+        this.position = new Position(0,0);  // TODO starting position
 
-        items = new int[2];
-        items[0] = 0;
-        items[1] = 0;
+        items = new Item[2];
+        items[0] = Item.NONE;
+        items[1] = Item.NONE;
 
         int hp = 2;
     }
 
-    void useItem(int item, int item_x, int item_y) {
+    void useItem(Item item, int item_x, int item_y) {
         if(items[0] == item) {
             items[0] = items[1];
-            items[1] = 0;
+            items[1] = Item.NONE;
         }
         else if(items[1] == item) {
-            items[1] = 0;
+            items[1] = Item.NONE;
         }
 
         switch(item) {
-            case 1: //
-
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case  9:
-                break;
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHP() {
+        return hp;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }
